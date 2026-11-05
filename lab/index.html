@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Лаборатория профиля</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<!--
+  Лаборатория профиля — открывается двойным щелчком, сервер не нужен.
+  Две страницы в одном файле: «Обзор» (для всех) и «Для продвинутых» (адрес …index.html#advanced).
+  Архив загружается один раз и виден на обеих.
+  Что где править:
+    config.js         — значения по умолчанию, пороги, часовые пояса
+    styles.css        — цвета (в начале файла), шрифты, отступы
+    view-simple.js    — страница «Обзор»
+    view-advanced.js  — страница «Для продвинутых»
+    app.js            — загрузка архива, переключение страниц, общие функции
+    core.js           — расчёты (должны совпадать с Python, проверка: parity_test.js)
+  После правки обнови страницу (Cmd+R).
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand"><div class="brand-mark" aria-hidden="true"><span></span></div>Лаборатория профиля</div>
+    <nav class="nav" aria-label="Страницы">
+      <a href="#overview" data-route="overview">Обзор</a>
+      <a href="#advanced" data-route="advanced">Для продвинутых</a>
+    </nav>
+    <div class="actions">
+      <label class="btn primary" for="file">Загрузить архив</label>
+      <button class="btn" id="demoBtn" type="button">Демо</button>
+      <input class="file-input" id="file" type="file" accept=".zip,.json,application/zip,application/json" multiple>
+    </div>
+  </div>
+</header>
+<div class="statusbar"><div class="wrap"><div class="status" id="status" role="status"></div></div></div>
+
+<main class="wrap" id="view" aria-live="polite">
+  <div class="empty">Загружаю демо-данные…</div>
+</main>
+
+<div class="drag-hint" id="dragHint" hidden>Отпусти, чтобы загрузить архив</div>
+<div id="tip" hidden></div>
+
+<script src="vendor/jszip.min.js"></script>
+<script src="config.js"></script>
+<script src="core.js"></script>
+<script src="demo-data.js"></script>
+<script src="app.js"></script>
+<script src="view-simple.js"></script>
+<script src="view-advanced.js"></script>
+<script>Lab.start();</script>
+</body>
+</html>
