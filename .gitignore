@@ -1,0 +1,15 @@
+# Личные данные — не публиковать
+my_spotify_data*
+*Spotify Account Data*
+*Spotify Extended Streaming History*
+profile*.json
+
+# Демо и служебное
+demo_export.zip
+__pycache__/
+*.pyc
+lab/dist/
+
+# macOS
+.DS_Store
+__MACOSX/
